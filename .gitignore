@@ -241,6 +241,7 @@ buildNumber.properties
 .flattened-pom.xml
 
 ### VisualStudioCode ###
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
