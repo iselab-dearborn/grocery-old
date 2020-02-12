@@ -40,6 +40,15 @@ public class Product {
 
     @Override
     public String toString() {
-        return this.name + " | " + this.amount;
+        
+        StringBuilder builder = new StringBuilder();
+        
+        builder.append("{");
+        builder.append("id: ").append(id).append(", ");
+        builder.append("name: \"").append(name).append("\", ");
+        builder.append("amount: ").append(amount);
+        builder.append("}");
+        
+        return builder.toString();
     }
 }
