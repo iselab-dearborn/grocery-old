@@ -14,12 +14,25 @@ public class ProductController {
     public ProductController() {
         this.productRepository = new ProductRepository();
     }
+    
+    public void print(List<Product> products) {
+       
+        String template = "%-2s %4s %-7s %4s %-5s";
+
+        System.out.println("-------------------------------");
+        System.out.println(String.format(template, "Id", "|", "Name", "|", "Amount"));
+        System.out.println("-------------------------------");
+        
+        for (Product p : products) {
+            System.out.println(String.format(template, p.getId(), "|", p.getName(), "|", p.getAmount()));
+        }
+    }
 
     public int showMenu() {
 
         SystemUtils.clearScreen();
 
-        System.out.println("Products");
+        SystemUtils.printHeader("Products");
 
         System.out.println("  [1] Add");
         System.out.println("  [2] Search by Name");
@@ -36,39 +49,34 @@ public class ProductController {
 
         SystemUtils.clearScreen();
         
-        String template = "%-2s %5s %-7s %5s %-5s";
-
-        System.out.println(String.format(template, "Id", "|", "Name", "|", "Amount"));
-        System.out.println("-------------------------------");
+        SystemUtils.printHeader("Products", "List All");
         
-        for (Product p : productRepository.findAll()) {
-            System.out.println(String.format(template, p.getId(), "|", p.getName(), "|", p.getAmount()));
-        }
-
+        print(productRepository.findAll());
+        
         SystemUtils.pressEnterKeyToContinue();
     }
 
     public void searchByName() {
 
         SystemUtils.clearScreen();
-
-        System.out.print("Search by Name: ");
+        
+        SystemUtils.printHeader("Products", "Search by Name");
+        
+        System.out.print("Name: ");
+        
         String name = SystemUtils.getStringFromKeyboard();
 
-        List<Product> foundProducts = productRepository.findByName(name);
-
-        for (Product p : foundProducts) {
-            System.out.println(p);
-        }
-
+        print(productRepository.findByName(name));
+        
         SystemUtils.pressEnterKeyToContinue();
     }
 
     public void addProduct() {
 
         SystemUtils.clearScreen();
-        System.out.println("Add Product: ");
-
+        
+        SystemUtils.printHeader("Products", "Add");
+        
         Product product = new Product();
 
         System.out.print("Name: ");

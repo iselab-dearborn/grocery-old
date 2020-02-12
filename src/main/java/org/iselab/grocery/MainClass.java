@@ -18,8 +18,8 @@ public class MainClass {
 
         SystemUtils.clearScreen();
 
-        System.out.println("Choose the option:");
-
+        SystemUtils.printHeader();
+        
         System.out.println("  [1] Products");
         System.out.println("  [9] Exit");
 
