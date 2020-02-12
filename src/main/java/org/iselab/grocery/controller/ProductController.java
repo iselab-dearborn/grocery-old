@@ -1,5 +1,6 @@
 package org.iselab.grocery.controller;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.iselab.grocery.domain.Product;
@@ -10,7 +11,7 @@ public class ProductController {
 
     private ProductRepository productRepository;
 
-    public ProductController(){
+    public ProductController() {
         this.productRepository = new ProductRepository();
     }
 
@@ -31,18 +32,23 @@ public class ProductController {
         return SystemUtils.getIntFromKeyboard();
     }
 
-    public void listAll(){
+    public void listAll() {
 
         SystemUtils.clearScreen();
+        
+        String template = "%-2s %5s %-7s %5s %-5s";
 
-        for(Product p : productRepository.findAll()){
-            System.out.println(p);
+        System.out.println(String.format(template, "Id", "|", "Name", "|", "Amount"));
+        System.out.println("-------------------------------");
+        
+        for (Product p : productRepository.findAll()) {
+            System.out.println(String.format(template, p.getId(), "|", p.getName(), "|", p.getAmount()));
         }
 
         SystemUtils.pressEnterKeyToContinue();
     }
 
-    public void searchByName(){
+    public void searchByName() {
 
         SystemUtils.clearScreen();
 
@@ -51,14 +57,14 @@ public class ProductController {
 
         List<Product> foundProducts = productRepository.findByName(name);
 
-        for(Product p : foundProducts){
+        for (Product p : foundProducts) {
             System.out.println(p);
         }
 
         SystemUtils.pressEnterKeyToContinue();
     }
 
-    public void addProduct(){
+    public void addProduct() {
 
         SystemUtils.clearScreen();
         System.out.println("Add Product: ");
@@ -74,24 +80,24 @@ public class ProductController {
         productRepository.save(product);
     }
 
-    public void start(){
+    public void start() {
 
         int option = showMenu();
 
         while (option != 9) {
 
             switch (option) {
-                case 1:
-                    addProduct();
-                    break;
-                case 2:
-                    searchByName();
-                    break;
-                case 4:
-                    listAll();
-                    break;
-                default:
-                    break;
+            case 1:
+                addProduct();
+                break;
+            case 2:
+                searchByName();
+                break;
+            case 4:
+                listAll();
+                break;
+            default:
+                break;
             }
 
             option = showMenu();
