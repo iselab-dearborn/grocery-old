@@ -56,6 +56,29 @@ public class ProductController {
         SystemUtils.pressEnterKeyToContinue();
     }
 
+    public void removeById() {
+
+        SystemUtils.clearScreen();
+        
+        SystemUtils.printHeader("Products", "Remove by Id");
+        
+        System.out.print("Id: ");
+        
+        int id = SystemUtils.getIntFromKeyboard();
+
+        System.out.println("----------------");
+        
+        Product removed = productRepository.removeById(id);
+
+        if (removed == null) {
+            System.out.println("Product not found");
+        } else {
+            System.out.println("Product " + removed.getName() + " was successfully removed");
+        }
+
+        SystemUtils.pressEnterKeyToContinue();
+    }
+    
     public void searchByName() {
 
         SystemUtils.clearScreen();
@@ -95,17 +118,18 @@ public class ProductController {
         while (option != 9) {
 
             switch (option) {
-            case 1:
-                addProduct();
-                break;
-            case 2:
-                searchByName();
-                break;
-            case 4:
-                listAll();
-                break;
-            default:
-                break;
+                case 1:
+                    addProduct();
+                    break;
+                case 2:
+                    searchByName();
+                    break;
+                case 3:
+                    removeById();
+                    break;
+                case 4:
+                    listAll();
+                    break;
             }
 
             option = showMenu();

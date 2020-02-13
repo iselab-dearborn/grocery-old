@@ -16,6 +16,18 @@ public class ProductRepository {
     public List<Product> findAll() {
         return products;
     }
+    
+    public Product findById(int id) {
+
+        for (Product product : products) {
+
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+
+        return null;
+    }
 
     public List<Product> findByName(String name) {
 
@@ -27,6 +39,19 @@ public class ProductRepository {
                 found.add(products);
             }
         }
+
+        return found;
+    }
+    
+    public Product removeById(int id) {
+
+        Product found = findById(id);
+
+        if (found == null) {
+            return null;
+        }
+
+        products.remove(found);
 
         return found;
     }
