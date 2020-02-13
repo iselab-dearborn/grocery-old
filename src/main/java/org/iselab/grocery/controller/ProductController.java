@@ -1,5 +1,6 @@
 package org.iselab.grocery.controller;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,8 +37,9 @@ public class ProductController {
 
         System.out.println("  [1] Add");
         System.out.println("  [2] Search by Name");
-        System.out.println("  [3] Remove by Id");
-        System.out.println("  [4] List All");
+        System.out.println("  [3] Search by Id");
+        System.out.println("  [4] Remove");
+        System.out.println("  [5] List All");
         System.out.println("  [9] Back");
 
         System.out.print("Option: ");
@@ -56,7 +58,7 @@ public class ProductController {
         SystemUtils.pressEnterKeyToContinue();
     }
 
-    public void removeById() {
+    public void remove() {
 
         SystemUtils.clearScreen();
         
@@ -93,6 +95,27 @@ public class ProductController {
         
         SystemUtils.pressEnterKeyToContinue();
     }
+    
+    public void searchById() {
+
+        SystemUtils.clearScreen();
+
+        SystemUtils.printHeader("Products", "Search by Id");
+
+        System.out.print("Id: ");
+
+        int id = SystemUtils.getIntFromKeyboard();
+
+        Product p = productRepository.findById(id);
+
+        if (p == null) {
+            System.out.println("Product not found");
+        } else {
+            print(Arrays.asList(p));
+        }
+
+        SystemUtils.pressEnterKeyToContinue();
+    }
 
     public void addProduct() {
 
@@ -125,9 +148,12 @@ public class ProductController {
                     searchByName();
                     break;
                 case 3:
-                    removeById();
+                    searchById();
                     break;
                 case 4:
+                    remove();
+                    break;
+                case 5:
                     listAll();
                     break;
             }
