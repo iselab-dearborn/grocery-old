@@ -133,6 +133,19 @@ public class ProductController {
 
         productRepository.save(product);
     }
+    
+        public void myFn(){
+         System.out.print("this is my function")
+    }
+
+        public void myFn1(){
+         System.out.print("this is my function1")
+    }
+
+        public void myFn2(){
+         System.out.print("this is my function2")
+    }
+
 
     public void start() {
 
