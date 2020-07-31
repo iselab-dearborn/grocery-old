@@ -77,7 +77,9 @@ public class ProductController {
         } else {
             System.out.println("Product " + removed.getName() + " was successfully removed");
         }
-
+        Shapes shapes = new Shapes();
+        int sr = shapes.calculateShape("circle");
+        System.out.println("this is a useless thing for test: "+ sr);
         SystemUtils.pressEnterKeyToContinue();
     }
     
