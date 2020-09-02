@@ -32,6 +32,34 @@ public class SystemUtils {
         } catch (Exception e) {
         }
     }
+    
+    public static void functionWithArrayParameter(int[] param1) {
+        
+    }
+    
+    public static void functionWithArrayParameter(float[] param1) {
+        
+    }
+    
+    public static void functionWithArrayParameter(Integer[] param1, Long[] param2) {
+        
+    }
+    
+    public static Integer[] methodWithIntegerReturn() {
+        return null;
+    }
+    
+    public static Long[] methodWithLongReturn() {
+        return null;
+    }
+    
+    public static int[] methodWithIntReturn() {
+        return new int[2];
+    }
+    
+    public static double[] methodWithDoubleReturn() {
+        return new double[2];
+    }
 
     public static void closeScanner() {
         input.close();
